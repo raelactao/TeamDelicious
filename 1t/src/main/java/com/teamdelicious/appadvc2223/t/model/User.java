@@ -55,7 +55,7 @@ public class User {
         this.firstName = userDTO.getFirstName();
         this.lastName = userDTO.getLastName();
         this.emailAddress = userDTO.getEmailAddress();
-        //this.passwordHash = userDTO.getPassword();
+        this.passwordHash = userDTO.getPassword();
     }
 
     public Long getId() {
