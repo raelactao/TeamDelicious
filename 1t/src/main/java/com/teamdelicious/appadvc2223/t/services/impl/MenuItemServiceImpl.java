@@ -45,9 +45,14 @@ public class MenuItemServiceImpl implements MenuItemService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws MenuItemNotFoundException {
+        Long count = menuItemRepository.countById(id);
+        if (count == null || count==0){
+            throw new MenuItemNotFoundException("Could not find any user with ID" + id);
+        }
         menuItemRepository.deleteById(id);
     }
+
 
 
 }
