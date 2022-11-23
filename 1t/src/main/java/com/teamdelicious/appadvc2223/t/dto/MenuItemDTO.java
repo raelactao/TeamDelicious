@@ -1,11 +1,13 @@
 package com.teamdelicious.appadvc2223.t.dto;
 
 
+import com.teamdelicious.appadvc2223.t.model.CartDetails;
 import com.teamdelicious.appadvc2223.t.model.MenuItem;
 import com.teamdelicious.appadvc2223.t.model.User;
 
 import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MenuItemDTO {
@@ -20,6 +22,8 @@ public class MenuItemDTO {
     public String description;
 
     public double price;
+
+    private Set<CartDetailsDTO> cartList;
 
     public MenuItemDTO() {} ;
 

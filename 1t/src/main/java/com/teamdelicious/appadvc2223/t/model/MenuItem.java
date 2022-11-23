@@ -1,9 +1,11 @@
 package com.teamdelicious.appadvc2223.t.model;
 
 
+import com.teamdelicious.appadvc2223.t.dto.CartDetailsDTO;
 import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "menuItem")
@@ -25,7 +27,15 @@ public class MenuItem {
     @Column
     private double price;
 
+
+    @OneToMany(mappedBy = "menuItem", cascade = CascadeType.REMOVE)
+    private Set<CartDetails> cartList;
+
     public MenuItem() {}
+
+    public MenuItem(Long id) {
+        this.id = id;
+    }
 
     public MenuItem(MenuItemDTO menuItemDTO) {
         this.id = menuItemDTO.getId();
@@ -49,4 +59,7 @@ public class MenuItem {
     public double getPrice() {
         return price;
     }
+
+
+
 }

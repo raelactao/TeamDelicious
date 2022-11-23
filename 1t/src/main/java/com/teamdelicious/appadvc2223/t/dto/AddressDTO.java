@@ -2,7 +2,6 @@ package com.teamdelicious.appadvc2223.t.dto;
 
 import com.teamdelicious.appadvc2223.t.model.Address;
 
-import javax.persistence.Column;
 
 public class AddressDTO {
 
