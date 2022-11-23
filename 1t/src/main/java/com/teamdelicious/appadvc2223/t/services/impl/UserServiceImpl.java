@@ -62,5 +62,21 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    public UserDTO validateUser(String emailAddress, String password) {
+        User user = userRepository.findByEmailAddress(emailAddress);
+
+        if (passwordEncoder.matches(password, user.getPasswordHash()))
+        {
+            return new UserDTO(user);
+        }
+        else
+        {
+            return null;
+        }
+
+
+    }
+
 
 }

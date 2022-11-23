@@ -22,7 +22,7 @@ public class UserDTO {
 
     private String password;
 
-    //private Long roleId;
+    private Long roleId;
 
     private String role;
 
@@ -50,7 +50,7 @@ public class UserDTO {
                 .map(AddressDTO::new)
                 .collect(Collectors.toSet());
 
-        this.role = user.getRole().getName();
+        //this.role = user.getRole().getName();
         this.password = user.getPasswordHash();
     }
 
@@ -94,6 +94,7 @@ public class UserDTO {
         this.password = password;
     }
 
+
     public String getRole() {
         return role;
     }
@@ -101,6 +102,7 @@ public class UserDTO {
     public void setRole(String role) {
         this.role = role;
     }
+
 
     public Set<AddressDTO> getAddressList() {
         return addressList;

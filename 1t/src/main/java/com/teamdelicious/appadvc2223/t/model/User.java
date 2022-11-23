@@ -26,7 +26,7 @@ public class User {
     @Column(nullable = false)
     private String emailAddress;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String passwordHash;
 
     @ManyToOne
@@ -55,7 +55,7 @@ public class User {
         this.firstName = userDTO.getFirstName();
         this.lastName = userDTO.getLastName();
         this.emailAddress = userDTO.getEmailAddress();
-        this.passwordHash = userDTO.getPassword();
+        //this.passwordHash = userDTO.getPassword();
     }
 
     public Long getId() {
@@ -77,7 +77,10 @@ public class User {
         return passwordHash;
     }
 
+
     public void setPasswordHash(String password) { this.passwordHash = passwordHash; }
+
+
     public Role getRole() {
         return role;
     }
