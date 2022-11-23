@@ -36,7 +36,7 @@ public class MenuController {
     @GetMapping("/{id}")
     private String getMenuItem(@PathVariable Long id, Model model) {
         model.addAttribute("menuItem", menuItemService.get(id));
-        return "menu/view-menuItem";
+        return "menu/view-menu";
     }
 
     @PutMapping
@@ -45,9 +45,10 @@ public class MenuController {
         return list(model);
     }
 
-    @DeleteMapping
-    private String deleteMenuItem(MenuItemDTO menuItemDTO, Model model) {
-        menuItemService.delete(menuItemDTO.getId());
+
+    @GetMapping("/delete/{id}")
+    private String deleteMenuItem(@PathVariable Long id, Model model) {
+        menuItemService.delete(id);
         return list(model);
     }
 
