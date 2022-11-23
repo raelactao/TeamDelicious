@@ -5,14 +5,7 @@ import com.teamdelicious.appadvc2223.t.dto.UserDTO;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -32,6 +25,13 @@ public class User {
 
     @Column(nullable = false)
     private String emailAddress;
+
+    @Column(nullable = false)
+    private String passwordHash;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
     @Column(updatable = false)
     @CreationTimestamp
@@ -55,6 +55,7 @@ public class User {
         this.firstName = userDTO.getFirstName();
         this.lastName = userDTO.getLastName();
         this.emailAddress = userDTO.getEmailAddress();
+        this.passwordHash = userDTO.getPassword();
     }
 
     public Long getId() {
@@ -72,10 +73,21 @@ public class User {
     public String getEmailAddress() {
         return emailAddress;
     }
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String password) { this.passwordHash = passwordHash; }
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) { this.role = role; }
 
     public Set<Address> getAddressList() {
         return addressList;
     }
+
 
     public LocalDateTime getDateCreated() {
         return dateCreated;

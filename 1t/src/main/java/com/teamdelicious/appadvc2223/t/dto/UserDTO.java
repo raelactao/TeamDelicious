@@ -1,7 +1,9 @@
 package com.teamdelicious.appadvc2223.t.dto;
 
+import com.teamdelicious.appadvc2223.t.model.Role;
 import com.teamdelicious.appadvc2223.t.model.User;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
@@ -18,16 +20,24 @@ public class UserDTO {
 
     private String emailAddress;
 
+    private String password;
+
+    //private Long roleId;
+
+    private String role;
+
     private Set<AddressDTO> addressList;
 
     public UserDTO() {}
 
-    public UserDTO(Long id, String firstName, String lastName, String emailAddress) {
+    public UserDTO(Long id, String firstName, String lastName, String emailAddress, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
+        this.password = password;
     }
+
 
     public UserDTO(User user) {
         this.id = user.getId();
@@ -39,6 +49,9 @@ public class UserDTO {
                 .stream()
                 .map(AddressDTO::new)
                 .collect(Collectors.toSet());
+
+        this.role = user.getRole().getName();
+        this.password = user.getPasswordHash();
     }
 
     public Long getId() {
@@ -71,6 +84,22 @@ public class UserDTO {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Set<AddressDTO> getAddressList() {

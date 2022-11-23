@@ -2,9 +2,12 @@ package com.teamdelicious.appadvc2223.t.services.impl;
 
 import com.teamdelicious.appadvc2223.t.dto.UserDTO;
 import com.teamdelicious.appadvc2223.t.model.User;
+import com.teamdelicious.appadvc2223.t.repository.RoleRepository;
 import com.teamdelicious.appadvc2223.t.repository.UserRepository;
+import com.teamdelicious.appadvc2223.t.security.CommonBeanConfiguration;
 import com.teamdelicious.appadvc2223.t.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +24,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public List<UserDTO> list() {
         return StreamSupport.stream(userRepository.findAll().spliterator(), false)
@@ -30,7 +39,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void add(UserDTO userDTO) {
-        userRepository.save(new User(userDTO));
+        User user = new User(userDTO);
+        user.setRole(roleRepository.findByName(userDTO.getRole()));
+        user.setPasswordHash(passwordEncoder.encode(userDTO.getPassword()));
+        userRepository.save(user);
+
+        //userRepository.save(new User(userDTO));
     }
 
     @Override
@@ -47,5 +61,6 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
+
 
 }

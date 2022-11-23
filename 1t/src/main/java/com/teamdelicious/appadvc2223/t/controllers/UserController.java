@@ -26,7 +26,7 @@ public class UserController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping
+    @GetMapping()
     private String list(Model model) {
         model.addAttribute("users", userService.list());
         return "user/index";
