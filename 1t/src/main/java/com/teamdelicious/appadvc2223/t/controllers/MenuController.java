@@ -52,7 +52,7 @@ public class MenuController {
     private String deleteMenuItem(@PathVariable Long id, RedirectAttributes ra) {
         try {
             menuItemService.delete(id);
-            ra.addFlashAttribute("message", "The user ID: " + id + " has been deleted.");
+            ra.addFlashAttribute("message", "The menu item ID: " + id + " has been deleted.");
         } catch (MenuItemNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
