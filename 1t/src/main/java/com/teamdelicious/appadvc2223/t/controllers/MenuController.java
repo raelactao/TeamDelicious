@@ -3,7 +3,7 @@ package com.teamdelicious.appadvc2223.t.controllers;
 
 import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 import com.teamdelicious.appadvc2223.t.services.MenuItemService;
-import com.teamdelicious.appadvc2223.t.services.impl.MenuItemNotFoundException;
+import com.teamdelicious.appadvc2223.t.errorhandler.MenuItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,14 +49,28 @@ public class MenuController {
 
 
     @GetMapping("/delete/{id}")
-    private String deleteMenuItem(@PathVariable Long id, RedirectAttributes ra) {
+    private String deleteMenuItem(@PathVariable Long id, Model model) {
+
+        /*
         try {
             menuItemService.delete(id);
             ra.addFlashAttribute("message", "The menu item ID: " + id + " has been deleted.");
         } catch (MenuItemNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }
-        return "redirect:/menuItems";
+        return "redirect:/users";
+         */
+        menuItemService.delete(id);
+        return list(model);
+
+
+    }
+
+    @ExceptionHandler(value = NumberFormatException.class)
+    public String numberformatHandler(Model theModel) {
+        theModel.addAttribute("err", "NumberFormatException");
+        return "error";
+
     }
 
 }

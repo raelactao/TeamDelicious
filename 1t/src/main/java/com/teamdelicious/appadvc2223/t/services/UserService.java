@@ -1,7 +1,6 @@
 package com.teamdelicious.appadvc2223.t.services;
 
 import com.teamdelicious.appadvc2223.t.dto.UserDTO;
-import com.teamdelicious.appadvc2223.t.services.impl.MenuItemNotFoundException;
 
 import java.util.List;
 

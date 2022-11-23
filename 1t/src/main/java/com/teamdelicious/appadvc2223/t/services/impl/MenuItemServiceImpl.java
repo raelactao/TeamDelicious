@@ -1,9 +1,8 @@
 package com.teamdelicious.appadvc2223.t.services.impl;
 
 import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
-import com.teamdelicious.appadvc2223.t.dto.UserDTO;
+import com.teamdelicious.appadvc2223.t.errorhandler.MenuItemNotFoundException;
 import com.teamdelicious.appadvc2223.t.model.MenuItem;
-import com.teamdelicious.appadvc2223.t.model.User;
 import com.teamdelicious.appadvc2223.t.repository.MenuItemRepository;
 import com.teamdelicious.appadvc2223.t.services.MenuItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +44,15 @@ public class MenuItemServiceImpl implements MenuItemService {
     }
 
     @Override
-    public void delete(Long id) throws MenuItemNotFoundException {
+    public void delete(Long id) {
+
+        /*
         Long count = menuItemRepository.countById(id);
         if (count == null || count==0){
             throw new MenuItemNotFoundException("Could not find any user with ID" + id);
         }
+        */
+
         menuItemRepository.deleteById(id);
     }
 

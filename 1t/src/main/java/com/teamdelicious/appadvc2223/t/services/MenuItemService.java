@@ -1,7 +1,7 @@
 package com.teamdelicious.appadvc2223.t.services;
 
 import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
-import com.teamdelicious.appadvc2223.t.services.impl.MenuItemNotFoundException;
+import com.teamdelicious.appadvc2223.t.errorhandler.MenuItemNotFoundException;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface MenuItemService {
 
     void update(MenuItemDTO updatedMenuItem);
 
-    void delete(Long id) throws MenuItemNotFoundException;
+    void delete(Long id);
 
 
 
