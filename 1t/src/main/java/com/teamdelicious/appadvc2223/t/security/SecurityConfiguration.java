@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -16,7 +17,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
     //@Autowired
     //PasswordEncoder passwordEncoder;
-/*
+
+    /*
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -37,6 +39,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
         return http.build();
     }
+    */
 
 
     /*
@@ -44,7 +47,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     protected void configure(final AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
     }
+*/
 
-    */
 
 }

@@ -9,31 +9,28 @@
 <div th:replace="fragments/header :: headerUnauthenticated"></div>
 
 
+<div th:replace="fragments/orderMenu"></div>
+
+
 <div class="container">
-  <h1 class="mt-5">Order</h1>
+  <h1 class="mt-5">Cart Items</h1>
+
   <table class="table">
     <thead>
     <tr>
-      <th>Add</th>
       <th>Name</th>
-      <th>Description</th>
+      <th>Quantity</th>
       <th>Price</th>
     </tr>
 
     <tbody>
-    <tr th:each="menuItem : ${menuItems}">
-      <td><input type="checkbox" th:value="${menuItem.id}"></td>
-      <td th:text="${menuItem.name}"></td>
-      <td th:text="${menuItem.description}"></td>
-      <td th:text="${menuItem.price}"></td>
-      <!-- <td>
-        <a href class="btn btn-outline-primary" th:href="@{~/menu/{id}(id=${menuItem.id})}">Add to Cart</a>
-      </td> -->
+    <tr th:each="cartDetail : ${cartDetails}">
+      <td th:text="${cartDetail.getMenuItem()}"></td>
+      <td th:text="${cartDetail.getQuantity()}"></td>
     </tr>
     </tbody>
   </table>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

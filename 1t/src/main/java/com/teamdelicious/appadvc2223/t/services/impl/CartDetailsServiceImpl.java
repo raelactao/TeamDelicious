@@ -6,19 +6,25 @@ import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 import com.teamdelicious.appadvc2223.t.dto.UserDTO;
 import com.teamdelicious.appadvc2223.t.model.CartDetails;
 import com.teamdelicious.appadvc2223.t.model.MenuItem;
+import com.teamdelicious.appadvc2223.t.model.User;
 import com.teamdelicious.appadvc2223.t.repository.CartMenuItemRepository;
+import com.teamdelicious.appadvc2223.t.repository.MenuItemRepository;
 import com.teamdelicious.appadvc2223.t.services.CartDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-
+@Service
 public class CartDetailsServiceImpl implements CartDetailsService {
 
     @Autowired
     CartMenuItemRepository cartMenuItemRepository;
+
+    @Autowired
+    MenuItemRepository menuItemRepository;
 
     @Override
     public List<CartDetailsDTO> list() {
@@ -30,7 +36,11 @@ public class CartDetailsServiceImpl implements CartDetailsService {
 
     @Override
     public void add(CartDetailsDTO cartDetailsDTO) {
-        cartMenuItemRepository.save(new CartDetails(cartDetailsDTO));
+
+        CartDetails cartDetails = new CartDetails(cartDetailsDTO);
+        MenuItem menuItem = menuItemRepository.findByName(cartDetailsDTO.getMenuItem());
+        cartDetails.setMenuItem(menuItem);
+        cartMenuItemRepository.save(cartDetails);
     }
 
     @Override

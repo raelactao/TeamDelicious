@@ -28,8 +28,8 @@ public class MenuItem {
     private double price;
 
 
-    @OneToMany(mappedBy = "menuItem", cascade = CascadeType.REMOVE)
-    private Set<CartDetails> cartList;
+    @OneToOne(mappedBy = "menuItem", cascade = CascadeType.REMOVE)
+    private CartDetails cartDetails;
 
     public MenuItem() {}
 

@@ -7,16 +7,18 @@ public class CartDetailsDTO {
 
     private Long id;
 
-    private Long menuItemId;
+    private String menuItem;
 
     private Integer quantity;
 
 
-    public CartDetailsDTO() {}
+    public CartDetailsDTO() {
+        this.setQuantity(1);
+    }
 
     public CartDetailsDTO(CartDetails cartDetails) {
         this.id = cartDetails.getId();
-        this.menuItemId = cartDetails.getMenuItem().getId();
+        this.menuItem = cartDetails.getMenuItem().getName();
         this.quantity = cartDetails.getQuantity();
 
     }
@@ -29,12 +31,10 @@ public class CartDetailsDTO {
         this.id = id;
     }
 
-    public Long getMenuItemId() {
-        return menuItemId;
-    }
+    public String getMenuItem() { return menuItem; }
 
-    public void setMenuItemId(Long menuItemId) {
-        this.menuItemId = menuItemId;
+    public void setMenuItem(String menuItem) {
+        this.menuItem = menuItem;
     }
 
     public Integer getQuantity() {

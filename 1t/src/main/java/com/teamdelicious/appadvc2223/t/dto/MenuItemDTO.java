@@ -21,6 +21,10 @@ public class MenuItemDTO {
 
     public String description;
 
+    public void setCartList(Set<CartDetailsDTO> cartList) {
+        this.cartList = cartList;
+    }
+
     public double price;
 
     private Set<CartDetailsDTO> cartList;

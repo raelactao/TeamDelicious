@@ -2,6 +2,7 @@ package com.teamdelicious.appadvc2223.t.model;
 
 import com.teamdelicious.appadvc2223.t.dto.AddressDTO;
 import com.teamdelicious.appadvc2223.t.dto.CartDetailsDTO;
+import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,7 +14,7 @@ public class CartDetails {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "menuItem_id", nullable = false)
     private MenuItem menuItem;
 
@@ -27,7 +28,7 @@ public class CartDetails {
     public CartDetails() {}
 
     public CartDetails(CartDetailsDTO cartDetailsDTO) {
-        this.menuItem = new MenuItem(cartDetailsDTO.getMenuItemId());
+
         this.quantity = cartDetailsDTO.getQuantity();
 
     }
@@ -40,6 +41,7 @@ public class CartDetails {
         return quantity;
     }
 
+    public void setMenuItem(MenuItem menuItem) { this.menuItem = menuItem; }
 
 
 }

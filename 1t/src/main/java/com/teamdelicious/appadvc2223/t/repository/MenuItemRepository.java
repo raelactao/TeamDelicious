@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 public interface MenuItemRepository extends CrudRepository<MenuItem, Long> {
 
-    //MenuItem findByName(String name);
+    MenuItem findByName(String name);
     Long countById(Long id);
 
 }
