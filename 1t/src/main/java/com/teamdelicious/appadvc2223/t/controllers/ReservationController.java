@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/reservations")
 public class ReservationController {
@@ -28,26 +30,26 @@ public class ReservationController {
     }
 
     @PostMapping
-    private String add(ReservationDTO reservationDTO, Model model) {
+    private String addReservation(ReservationDTO reservationDTO, Model model) {
         reservationService.add(reservationDTO);
         return list(model);
     }
 
     @GetMapping("/{id}")
-    private String getMenuItem(@PathVariable Long id, Model model) {
+    private String getReservation(@PathVariable Long id, Model model) {
         model.addAttribute("reservation", reservationService.get(id));
         return "reservation/view-reserve";
     }
 
     @PutMapping
-    private String updateMenuItem(ReservationDTO menuItemDTO, Model model) {
+    private String updateReservation(ReservationDTO menuItemDTO, Model model) {
         reservationService.update(menuItemDTO);
         return list(model);
     }
 
 
     @GetMapping("/delete/{id}")
-    private String deleteMenuItem(@PathVariable Long id, Model model) {
+    private String deleteReservation(@PathVariable Long id, Model model) {
 
         /*
         try {

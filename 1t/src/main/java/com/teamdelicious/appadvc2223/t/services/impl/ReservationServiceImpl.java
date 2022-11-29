@@ -30,7 +30,6 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void add(ReservationDTO reservationDTO) {
 
-        //enter unique reservation logic so it does not add if date/time has already been added
         reservationRepository.save(new Reservation(reservationDTO));
     }
 
@@ -56,4 +55,23 @@ public class ReservationServiceImpl implements ReservationService {
 
         reservationRepository.deleteById(id);
     }
+
+    //enter unique reservation logic so it does not add if date/time has already been added
+    @Override
+    public String validateReservedDateTime(Reservation reservation) {
+        String message = "";
+
+        for (ReservationDTO reservationDTO1 : list())
+        {
+            if (reservationDTO1.getReservedDateTime().equals(reservation.getReservedDateTime()))
+            {
+                message = reservation.getReservedDateTime() + "has already been reserved. Please select another time.";
+
+            }
+        }
+        return message;
+    }
+
+
+
 }

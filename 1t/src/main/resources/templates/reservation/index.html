@@ -16,6 +16,7 @@
     <thead>
     <tr>
       <th>ID</th>
+      <th>Reserved Date & Time</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Contact No.</th>
@@ -27,6 +28,7 @@
     <tbody>
     <tr th:each="reservation : ${reservations}">
       <td th:text="${reservation.getId()}"></td>
+      <td th:text="${reservation.getReservedDateTime()}"></td>
       <td th:text="${reservation.getFirstName()}"></td>
       <td th:text="${reservation.getLastName()}"></td>
       <td th:text="${reservation.getContactNumber()}"></td>

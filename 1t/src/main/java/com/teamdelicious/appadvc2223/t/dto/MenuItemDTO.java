@@ -5,6 +5,9 @@ import com.teamdelicious.appadvc2223.t.model.CartDetails;
 import com.teamdelicious.appadvc2223.t.model.MenuItem;
 import com.teamdelicious.appadvc2223.t.model.User;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
@@ -13,10 +16,11 @@ import java.util.stream.Collectors;
 public class MenuItemDTO {
 
 
+
     public Long id;
 
-    public String name;
 
+    public String name;
 
     public String description;
 

@@ -5,6 +5,7 @@ import com.teamdelicious.appadvc2223.t.dto.CartDetailsDTO;
 import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -16,7 +17,8 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Size(min=2, max=70)
+    @Size(min=2, max=70, message = "Name needs to be between 2 to 70 characters" )
+    @NotNull(message = "Please enter a name")
     @Column(nullable = false)
     private String name;
 
@@ -26,6 +28,7 @@ public class MenuItem {
     @Column
     private String description;
 
+    @NotNull(message = "Please enter a price.")
     @Column
     private double price;
 
