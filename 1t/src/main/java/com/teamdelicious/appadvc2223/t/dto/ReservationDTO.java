@@ -33,6 +33,7 @@ public class ReservationDTO {
         this.setFirstName(reservation.getFirstName());
         this.setLastName(reservation.getLastName());
         this.setContactNumber(reservation.getContactNumber());
+        this.setEmailAddress(reservation.getEmailAddress());
         this.setPaxNumber(reservation.getPaxNumber());
     }
 

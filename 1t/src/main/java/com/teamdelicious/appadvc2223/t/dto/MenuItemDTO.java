@@ -17,17 +17,10 @@ public class MenuItemDTO {
 
     public String name;
 
-    //private String category;
 
     public String description;
 
-    public void setCartList(Set<CartDetailsDTO> cartList) {
-        this.cartList = cartList;
-    }
-
     public double price;
-
-    private Set<CartDetailsDTO> cartList;
 
     public MenuItemDTO() {} ;
 
@@ -71,4 +64,6 @@ public class MenuItemDTO {
     public void setPrice(double price) {
         this.price = price;
     }
+
+
 }

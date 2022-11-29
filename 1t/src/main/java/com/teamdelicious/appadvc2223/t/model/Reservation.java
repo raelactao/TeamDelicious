@@ -2,6 +2,7 @@ package com.teamdelicious.appadvc2223.t.model;
 
 import com.teamdelicious.appadvc2223.t.dto.ReservationDTO;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "reservation")
@@ -20,6 +21,7 @@ public class Reservation {
     @Column(nullable = false)
     private String contactNumber;
 
+    @Email
     @Column(nullable = false)
     private String emailAddress;
 

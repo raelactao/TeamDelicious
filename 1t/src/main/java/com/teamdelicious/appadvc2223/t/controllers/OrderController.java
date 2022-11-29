@@ -32,8 +32,15 @@ public class OrderController {
 
     }
 
-
     /*
+    @GetMapping("admin")
+    private String listOrders(Model model) {
+
+        model.addAttribute("cartDetails", cartDetailsService.list());
+        return "order/admin-index";
+
+    }
+
 
     @PostMapping()
     private MenuItemDTO addItemToCart(List<MenuItemDTO> menuList) {
@@ -68,7 +75,6 @@ public class OrderController {
 
         cartDetailsService.delete(id);
         return list(model);
-
 
     }
 

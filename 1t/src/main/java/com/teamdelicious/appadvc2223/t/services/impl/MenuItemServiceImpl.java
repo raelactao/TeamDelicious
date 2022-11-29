@@ -27,9 +27,6 @@ public class MenuItemServiceImpl implements MenuItemService {
 
     @Override
     public void add(MenuItemDTO menuItemDTO) {
-        //MenuItem menuItem = new MenuItem(menuItemDTO);
-        //menuItemRepository.save(menuItem);
-
         menuItemRepository.save(new MenuItem(menuItemDTO));
     }
 

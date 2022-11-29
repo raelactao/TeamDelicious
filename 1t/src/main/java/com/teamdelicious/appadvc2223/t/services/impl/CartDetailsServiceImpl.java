@@ -40,6 +40,7 @@ public class CartDetailsServiceImpl implements CartDetailsService {
     public void add(CartDetailsDTO cartDetailsDTO) {
 
         CartDetails cartDetails = new CartDetails(cartDetailsDTO);
+
         cartDetails.setQuantity(1);
         MenuItem menuItem = menuItemRepository.findByName(cartDetailsDTO.getMenuItem());
 

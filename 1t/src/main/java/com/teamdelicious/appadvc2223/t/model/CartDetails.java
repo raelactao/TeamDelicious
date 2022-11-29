@@ -29,7 +29,12 @@ public class CartDetails {
         return id;
     }
 
+    //@OneToOne(mappedBy = "cartDetails", cascade = CascadeType.REMOVE)
+    //private Order order;
+
     public CartDetails() {}
+
+    public CartDetails(Long id) { this.id = id; }
 
     public CartDetails(CartDetailsDTO cartDetailsDTO) {
 
