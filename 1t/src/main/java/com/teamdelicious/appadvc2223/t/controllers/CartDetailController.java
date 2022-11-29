@@ -2,7 +2,6 @@ package com.teamdelicious.appadvc2223.t.controllers;
 
 
 import com.teamdelicious.appadvc2223.t.dto.CartDetailsDTO;
-import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 import com.teamdelicious.appadvc2223.t.services.CartDetailsService;
 import com.teamdelicious.appadvc2223.t.services.MenuItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-
 @Controller
-@RequestMapping("order")
-public class OrderController {
+@RequestMapping("order/customer")
+public class CartDetailController {
 
 
     @Autowired
@@ -28,7 +25,7 @@ public class OrderController {
 
         model.addAttribute("menuItems", menuItemService.list());
         model.addAttribute("cartDetails", cartDetailsService.list());
-        return "order/index";
+        return "cart/index";
 
     }
 
@@ -61,7 +58,7 @@ public class OrderController {
     private String getCartItem(@PathVariable Long id, Model model) {
         model.addAttribute("cartDetail", cartDetailsService.get(id));
         //model.addAttribute("menuItem", menuItemService.get(menuId));
-        return "order/view-cart-item";
+        return "cart/view-cart-item";
     }
 
     @PutMapping
