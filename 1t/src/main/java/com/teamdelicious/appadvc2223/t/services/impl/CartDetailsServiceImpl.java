@@ -2,19 +2,14 @@ package com.teamdelicious.appadvc2223.t.services.impl;
 
 
 import com.teamdelicious.appadvc2223.t.dto.CartDetailsDTO;
-import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
-import com.teamdelicious.appadvc2223.t.dto.UserDTO;
-import com.teamdelicious.appadvc2223.t.errorhandler.MenuItemAlreadyExists;
 import com.teamdelicious.appadvc2223.t.model.CartDetails;
 import com.teamdelicious.appadvc2223.t.model.MenuItem;
-import com.teamdelicious.appadvc2223.t.model.User;
 import com.teamdelicious.appadvc2223.t.repository.CartMenuItemRepository;
 import com.teamdelicious.appadvc2223.t.repository.MenuItemRepository;
 import com.teamdelicious.appadvc2223.t.services.CartDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.management.openmbean.KeyAlreadyExistsException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -40,22 +35,22 @@ public class CartDetailsServiceImpl implements CartDetailsService {
     public void add(CartDetailsDTO cartDetailsDTO) {
 
         CartDetails cartDetails = new CartDetails(cartDetailsDTO);
-
         cartDetails.setQuantity(1);
         MenuItem menuItem = menuItemRepository.findByName(cartDetailsDTO.getMenuItem());
-
 
         boolean isExistingInCart = false;
 
         for(CartDetailsDTO cartDetailsDTO1 : list()) {
             if (menuItem.getId() == menuItemRepository.findByName(cartDetailsDTO1.getMenuItem()).getId()) {
 
-                //cartDetails.setMenuItem(menuItemRepository.findByName(cartDetailsDTO1.getMenuItem()));
-                cartDetailsDTO1.setQuantity(cartDetailsDTO1.getQuantity() + 1);
-                cartMenuItemRepository.save(new CartDetails(cartDetailsDTO1));
+                CartDetails cartDetails1 = new CartDetails(cartDetailsDTO1);
+                MenuItem menuItem1 = cartMenuItemRepository.findById(cartDetailsDTO1.getId()).get().getMenuItem();
+                cartDetails1.setMenuItem(menuItem1);
+                cartDetails1.setQuantity(cartDetails1.getQuantity() + 1);
+                cartDetails1.setTotal(cartDetails1.getQuantity() * menuItem1.getPrice());
+                cartMenuItemRepository.save(cartDetails1);
                 isExistingInCart = true;
             }
-
         }
 
         if (!isExistingInCart)

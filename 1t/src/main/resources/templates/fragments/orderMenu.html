@@ -12,19 +12,22 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Add</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Add</th>
             </tr>
 
             <tbody>
             <tr th:each="menuItem : ${menuItems}">
-                <td><input type="checkbox" th:name="menuItemId" th:value="${menuItem.id}"></td>
                 <td th:text="${menuItem.name}"></td>
                 <td th:text="${menuItem.description}"></td>
                 <td th:text="${menuItem.price}"></td>
-                <td><button type="submit" class="btn btn-outline-primary">Add to Cart</button></td>
+                <td>
+                    <button type="submit" class="btn btn-outline-primary" th:name="menuItemId" th:value="${menuItem.id}">
+                        Add to Cart
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
