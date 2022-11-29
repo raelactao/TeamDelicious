@@ -44,23 +44,27 @@ public class CartDetailsServiceImpl implements CartDetailsService {
         cartDetails.setQuantity(1);
         MenuItem menuItem = menuItemRepository.findByName(cartDetailsDTO.getMenuItem());
 
-        /*
-        for(CartDetailsDTO cartDetailsDTO1 : list())
-        {
-            if (menuItem.getId() == menuItemRepository.findByName(cartDetailsDTO1.getMenuItem()).getId())
-            {
 
-                    cartDetails.setMenuItem(menuItemRepository.findByName(cartDetailsDTO1.getMenuItem()));
-                    cartDetails.setQuantity(cartDetailsDTO1.getQuantity() + 1);
-                    cartMenuItemRepository.save(cartDetails);
+        boolean isExistingInCart = false;
+
+        for(CartDetailsDTO cartDetailsDTO1 : list()) {
+            if (menuItem.getId() == menuItemRepository.findByName(cartDetailsDTO1.getMenuItem()).getId()) {
+
+                //cartDetails.setMenuItem(menuItemRepository.findByName(cartDetailsDTO1.getMenuItem()));
+                cartDetailsDTO1.setQuantity(cartDetailsDTO1.getQuantity() + 1);
+                cartMenuItemRepository.save(new CartDetails(cartDetailsDTO1));
+                isExistingInCart = true;
             }
 
         }
-        */
 
-        cartDetails.setMenuItem(menuItem);
-        cartDetails.setTotal(cartDetails.getQuantity() * menuItem.getPrice());
-        cartMenuItemRepository.save(cartDetails);
+        if (!isExistingInCart)
+        {
+            cartDetails.setMenuItem(menuItem);
+            cartDetails.setTotal(cartDetails.getQuantity() * menuItem.getPrice());
+            cartMenuItemRepository.save(cartDetails);
+        }
+
 
 
     }
