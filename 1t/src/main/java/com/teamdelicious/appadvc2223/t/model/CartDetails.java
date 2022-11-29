@@ -14,12 +14,16 @@ public class CartDetails {
     @GeneratedValue
     private Long id;
 
+
     @OneToOne
     @JoinColumn(name = "menuItem_id", nullable = false)
     private MenuItem menuItem;
 
     @Column
     private Integer quantity;
+
+    @Column
+    private double total;
 
     public Long getId() {
         return id;
@@ -29,7 +33,9 @@ public class CartDetails {
 
     public CartDetails(CartDetailsDTO cartDetailsDTO) {
 
+        this.id = cartDetailsDTO.getId();
         this.quantity = cartDetailsDTO.getQuantity();
+        this.total = cartDetailsDTO.getTotal();
 
     }
 
@@ -41,7 +47,14 @@ public class CartDetails {
         return quantity;
     }
 
+
+    public double getTotal() { return total; };
+
     public void setMenuItem(MenuItem menuItem) { this.menuItem = menuItem; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    public void setTotal( double total ) { this.total = total; }
 
 
 }

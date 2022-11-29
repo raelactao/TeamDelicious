@@ -50,18 +50,26 @@ public class OrderController {
         return list(model);
     }
 
-
-    /*
-
-    @PostMapping("/{orderId}/cart")
-    private String addCartDetails(@PathVariable Long orderId, CartDetailsDTO cartDetailsDTO, Model model) {
-        cartDetailsDTO.setId(orderId);
-        cartDetailsService.add(cartDetailsDTO);
-        return getCartDetails(orderId, model);
+    @GetMapping("/{id}")
+    private String getCartItem(@PathVariable Long id, Model model) {
+        model.addAttribute("cartDetail", cartDetailsService.get(id));
+        //model.addAttribute("menuItem", menuItemService.get(menuId));
+        return "order/view-cart-item";
     }
 
+    @PutMapping
+    private String updateCartItem(CartDetailsDTO cartDetailsDTO, Model model) {
+        cartDetailsService.update(cartDetailsDTO);
+        return list(model);
+    }
 
-     */
+    @GetMapping("/delete/{id}")
+    private String deleteCartItem(@PathVariable Long id, Model model) {
 
+        cartDetailsService.delete(id);
+        return list(model);
+
+
+    }
 
 }

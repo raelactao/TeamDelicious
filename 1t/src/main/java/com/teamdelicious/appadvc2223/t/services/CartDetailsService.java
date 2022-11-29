@@ -18,4 +18,6 @@ public interface CartDetailsService {
     void update(CartDetailsDTO cartDetailsDTO);
 
     void delete(Long id);
+
+
 }

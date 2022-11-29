@@ -12,15 +12,16 @@ public class CartDetailsDTO {
     private Integer quantity;
 
 
-    public CartDetailsDTO() {
-        this.setQuantity(1);
-    }
+    private double total;
+
+
+    public CartDetailsDTO() {}
 
     public CartDetailsDTO(CartDetails cartDetails) {
         this.id = cartDetails.getId();
         this.menuItem = cartDetails.getMenuItem().getName();
         this.quantity = cartDetails.getQuantity();
-
+        this.total = cartDetails.getTotal();
     }
 
     public Long getId() {
@@ -44,4 +45,9 @@ public class CartDetailsDTO {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    public double getTotal() { return total; }
+
+    public void setTotal(double total) { this.quantity = quantity; }
+
 }

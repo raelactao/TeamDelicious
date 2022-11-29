@@ -21,12 +21,18 @@
       <th>Name</th>
       <th>Quantity</th>
       <th>Price</th>
+      <th>Action</th>
     </tr>
 
     <tbody>
     <tr th:each="cartDetail : ${cartDetails}">
       <td th:text="${cartDetail.getMenuItem()}"></td>
       <td th:text="${cartDetail.getQuantity()}"></td>
+      <td th:text="${cartDetail.getTotal()}"></td>
+      <td>
+        <a href class="btn btn-outline-primary" th:href="@{~/order/{id}(id=${cartDetail.id})}">View</a>
+        <a href class="btn btn-outline-primary" th:href="@{~/order/delete/{id}(id=${cartDetail.id})}">Delete</a>
+      </td>
     </tr>
     </tbody>
   </table>

@@ -5,6 +5,7 @@ import com.teamdelicious.appadvc2223.t.dto.CartDetailsDTO;
 import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,7 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Size(min=2, max=70)
     @Column(nullable = false)
     private String name;
 
