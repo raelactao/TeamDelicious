@@ -30,6 +30,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void add(ReservationDTO reservationDTO) {
 
+        //enter unique reservation logic so it does not add if date/time has already been added
         reservationRepository.save(new Reservation(reservationDTO));
     }
 
