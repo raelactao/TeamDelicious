@@ -20,14 +20,22 @@ public class ReservationDTO {
         this.reservedDateTime = reservedDateTime;
     }
 
+    @NotNull(message = "Please input a date and time.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime reservedDateTime;
 
+    @NotEmpty(message = "Please enter a first name.")
     private String firstName;
 
+    @NotEmpty(message = "Please enter a last name.")
     private String lastName;
 
+    @NotEmpty(message = "Please enter a contact number.")
     private String contactNumber;
 
+
+    @NotEmpty(message = "Please enter an email address.")
+    @Email
     private String emailAddress;
 
     private String paxNumber;

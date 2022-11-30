@@ -4,6 +4,7 @@ package com.teamdelicious.appadvc2223.t.model;
 import com.teamdelicious.appadvc2223.t.dto.OrderDTO;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity(name = "order")
@@ -27,13 +28,11 @@ public class Order {
     private String address;
 
 
-
-    @OneToOne
+    /*
+    @OneToMany
     @JoinColumn(name = "cartDetails_id", nullable = false)
-    private CartDetails cartDetails;
-
-
-
+    private Set<CartDetails> cartDetails;
+     */
 
     @Column
     private double amountPayable;
@@ -83,11 +82,11 @@ public class Order {
 
 
     /*
-    public CartDetails getCartDetails() {
+    public Set<CartDetails> getCartDetails() {
         //return cartDetails;
     }
 
-    public void setCartDetails(CartDetails cartDetails) {
+    public void setCartDetails(Set<CartDetails> cartDetails) {
         //this.cartDetails = cartDetails;
     }
     */

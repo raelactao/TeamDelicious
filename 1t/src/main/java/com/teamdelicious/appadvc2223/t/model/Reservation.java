@@ -1,14 +1,9 @@
 package com.teamdelicious.appadvc2223.t.model;
 
 import com.teamdelicious.appadvc2223.t.dto.ReservationDTO;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "reservation")
@@ -18,25 +13,21 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message = "Please input a date and time.")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+
     @Column(nullable = false)
     private LocalDateTime reservedDateTime;
 
-    @NotEmpty(message = "Please enter a first name.")
+
     @Column(nullable = false)
     private String firstName;
 
-    @NotEmpty(message = "Please enter a last name.")
     @Column(nullable = false)
     private String lastName;
 
-    @NotEmpty(message = "Please enter a contact number.")
     @Column(nullable = false)
     private String contactNumber;
 
-    @NotEmpty(message = "Please enter an email address.")
-    @Email
+
     @Column(nullable = false)
     private String emailAddress;
 
