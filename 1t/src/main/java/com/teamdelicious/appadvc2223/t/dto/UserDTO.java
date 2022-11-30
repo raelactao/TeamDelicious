@@ -22,19 +22,18 @@ public class UserDTO {
 
     private String password;
 
-    private Long roleId;
-
     private String role;
 
     private Set<AddressDTO> addressList;
 
     public UserDTO() {}
 
-    public UserDTO(Long id, String firstName, String lastName, String emailAddress, String password) {
+    public UserDTO(Long id, String firstName, String lastName, String emailAddress, String role, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
+        this.role = role;
         this.password = password;
     }
 
@@ -44,14 +43,12 @@ public class UserDTO {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.emailAddress = user.getEmailAddress();
+        this.role = user.getRole().getName();
         this.addressList = Optional.ofNullable(user.getAddressList())
                 .orElseGet(Collections::emptySet)
                 .stream()
                 .map(AddressDTO::new)
                 .collect(Collectors.toSet());
-
-        this.role = user.getRole().getName();
-        this.password = user.getPasswordHash();
     }
 
     public Long getId() {

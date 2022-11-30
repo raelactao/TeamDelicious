@@ -29,8 +29,12 @@ public class MenuController {
     }
 
     @PostMapping
-    private String add(MenuItemDTO menuItemDTO, Model model) {
-        menuItemService.add(menuItemDTO);
+    private String add(@Valid @ModelAttribute("menuItem") MenuItemDTO menuItem, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("menuItem", menuItem);
+            return "menu/add-menu";
+        }
+        menuItemService.add(menuItem);
         return list(model);
     }
 
@@ -47,8 +51,8 @@ public class MenuController {
     }
 
 
-    @GetMapping("/delete/{id}")
-    private String deleteMenuItem(@PathVariable Long id, Model model) {
+    @DeleteMapping
+    private String deleteMenuItem(MenuItemDTO menuItemDTO, Model model) {
 
         /*
         try {
@@ -59,7 +63,7 @@ public class MenuController {
         }
         return "redirect:/users";
          */
-        menuItemService.delete(id);
+        menuItemService.delete(menuItemDTO.getId());
         return list(model);
 
 

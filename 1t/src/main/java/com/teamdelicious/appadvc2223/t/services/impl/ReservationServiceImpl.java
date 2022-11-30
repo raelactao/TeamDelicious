@@ -41,47 +41,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void add(ReservationDTO reservationDTO) {
 
-        Reservation reservation = new Reservation(reservationDTO);
-
-        reservationRepository.save(reservation);
-        /*
-        boolean isAvailable = true;
-        for (ReservationDTO reservationDTO1 : list())
-        {
-            if (reservationDTO1.getReservedDateTime().equals(reservation.getReservedDateTime()))
-            {
-                isAvailable = false;
-            }
-        }
-
-        if (!isAvailable)
-        {
-            String msg = "Reservation is already taken";
-
-            new FieldError("reservation", "reservedDateTime", msg);
-
-        }
-        else
-        {
-            reservationRepository.save(reservation);
-        }
-
-        /*
-        Set<ConstraintViolation<ReservationDTO>> violations = validator.validate(reservationDTO);
-
-        if (!violations.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (ConstraintViolation<ReservationDTO> constraintViolation : violations) {
-                sb.append(constraintViolation.getMessage());
-            }
-            throw new ConstraintViolationException("Error occurred: " + sb.toString(), violations);
-        }
-        else {
-            reservationRepository.save(new Reservation(reservationDTO));
-        }
-         */
-
-
+         reservationRepository.save(new Reservation(reservationDTO))
 
     }
 

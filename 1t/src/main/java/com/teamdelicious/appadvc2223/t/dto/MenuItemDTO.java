@@ -1,30 +1,22 @@
 package com.teamdelicious.appadvc2223.t.dto;
 
 
-import com.teamdelicious.appadvc2223.t.model.CartDetails;
 import com.teamdelicious.appadvc2223.t.model.MenuItem;
-import com.teamdelicious.appadvc2223.t.model.User;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import javax.validation.constraints.*;
 
 public class MenuItemDTO {
 
+    private Long id;
 
+    @NotBlank(message = "Name is required")
+    private String name;
 
-    public Long id;
+    @NotBlank(message = "Description is required")
+    private String description;
 
-
-    public String name;
-
-    public String description;
-
-    public double price;
+    @PositiveOrZero(message = "Price must not be a negative number")
+    private double price;
 
     public MenuItemDTO() {} ;
 
@@ -32,7 +24,7 @@ public class MenuItemDTO {
         this.id = menuItem.getId();
         this.name = menuItem.getName();
         this.description = menuItem.getDescription();
-        this.price = menuItem.getPrice();
+        this.price = (long) menuItem.getPrice();
 
     }
 
@@ -65,7 +57,7 @@ public class MenuItemDTO {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
