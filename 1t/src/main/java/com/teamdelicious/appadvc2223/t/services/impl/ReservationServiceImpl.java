@@ -1,16 +1,16 @@
 package com.teamdelicious.appadvc2223.t.services.impl;
 
-import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 import com.teamdelicious.appadvc2223.t.dto.ReservationDTO;
-import com.teamdelicious.appadvc2223.t.model.MenuItem;
 import com.teamdelicious.appadvc2223.t.model.Reservation;
-import com.teamdelicious.appadvc2223.t.repository.MenuItemRepository;
 import com.teamdelicious.appadvc2223.t.repository.ReservationRepository;
 import com.teamdelicious.appadvc2223.t.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -19,6 +19,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Autowired
     ReservationRepository reservationRepository;
+
 
     @Override
     public List<ReservationDTO> list() {
@@ -30,7 +31,21 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void add(ReservationDTO reservationDTO) {
 
-        reservationRepository.save(new Reservation(reservationDTO));
+        Reservation reservation = new Reservation(reservationDTO);
+
+        /*
+        Set<ConstraintViolation<Reservation>> violations = validateReservedDateTime(reservation);
+
+        if (!violations.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (ConstraintViolation<Reservation> constraintViolation : violations) {
+                sb.append(constraintViolation.getMessage());
+            }
+            throw new ConstraintViolationException("Error occurred: " + sb.toString(), violations);
+        }
+       */
+
+        reservationRepository.save(reservation);
     }
 
     @Override
@@ -56,8 +71,8 @@ public class ReservationServiceImpl implements ReservationService {
         reservationRepository.deleteById(id);
     }
 
+    /*
     //enter unique reservation logic so it does not add if date/time has already been added
-    @Override
     public String validateReservedDateTime(Reservation reservation) {
         String message = "";
 
@@ -71,6 +86,8 @@ public class ReservationServiceImpl implements ReservationService {
         }
         return message;
     }
+
+     */
 
 
 

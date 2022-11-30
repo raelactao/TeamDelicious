@@ -1,6 +1,7 @@
 package com.teamdelicious.appadvc2223.t.model;
 
 import com.teamdelicious.appadvc2223.t.dto.ReservationDTO;
+import com.teamdelicious.appadvc2223.t.services.ReservationDateTimeConstraint;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -18,6 +19,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    //@ReservationDateTimeConstraint
     @NotNull(message = "Please input a date and time.")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(nullable = false)

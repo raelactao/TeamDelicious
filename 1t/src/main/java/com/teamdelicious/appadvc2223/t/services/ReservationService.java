@@ -1,6 +1,6 @@
 package com.teamdelicious.appadvc2223.t.services;
 
-
+import com.teamdelicious.appadvc2223.t.dto.MenuItemDTO;
 import com.teamdelicious.appadvc2223.t.dto.ReservationDTO;
 import com.teamdelicious.appadvc2223.t.model.Reservation;
 
@@ -18,5 +18,5 @@ public interface ReservationService {
 
     void delete(Long id);
 
-    String validateReservedDateTime(Reservation reservation);
+    //String validateReservedDateTime(Reservation reservation);
 }
