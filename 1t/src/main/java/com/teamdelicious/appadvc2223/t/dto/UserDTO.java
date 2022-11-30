@@ -50,7 +50,7 @@ public class UserDTO {
                 .map(AddressDTO::new)
                 .collect(Collectors.toSet());
 
-        //this.role = user.getRole().getName();
+        this.role = user.getRole().getName();
         this.password = user.getPasswordHash();
     }
 

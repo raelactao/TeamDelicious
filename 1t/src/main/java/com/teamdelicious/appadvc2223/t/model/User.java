@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -23,6 +24,7 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
+    @Email
     @Column(nullable = false)
     private String emailAddress;
 
@@ -55,7 +57,7 @@ public class User {
         this.firstName = userDTO.getFirstName();
         this.lastName = userDTO.getLastName();
         this.emailAddress = userDTO.getEmailAddress();
-        //this.passwordHash = userDTO.getPassword();
+        this.passwordHash = userDTO.getPassword();
     }
 
     public Long getId() {
