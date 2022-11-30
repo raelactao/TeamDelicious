@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/1t/1t.iml" filepath="$PROJECT_DIR$/1t/1t.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1t/1t (1).iml" filepath="$PROJECT_DIR$/1t/1t (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/TeamDelicious-branchmaster3/1t/1t (2).iml" filepath="$PROJECT_DIR$/TeamDelicious-branchmaster3/1t/1t (2).iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TeamDelicious.iml" filepath="$PROJECT_DIR$/.idea/TeamDelicious.iml" />
     </modules>
   </component>
