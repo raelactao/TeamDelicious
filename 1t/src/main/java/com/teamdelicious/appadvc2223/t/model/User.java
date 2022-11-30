@@ -25,10 +25,10 @@ public class User {
     private String lastName;
 
     @Email
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String emailAddress;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String passwordHash;
 
     @ManyToOne
@@ -43,7 +43,7 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime dateUpdated;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<Address> addressList;
 
     public User() {}
@@ -57,7 +57,6 @@ public class User {
         this.firstName = userDTO.getFirstName();
         this.lastName = userDTO.getLastName();
         this.emailAddress = userDTO.getEmailAddress();
-        this.passwordHash = userDTO.getPassword();
     }
 
     public Long getId() {
@@ -80,7 +79,7 @@ public class User {
     }
 
 
-    public void setPasswordHash(String password) { this.passwordHash = passwordHash; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
 
 
     public Role getRole() {

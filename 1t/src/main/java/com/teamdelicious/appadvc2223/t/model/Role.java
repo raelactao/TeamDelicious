@@ -15,7 +15,6 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "role")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +38,10 @@ public class Role {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setRoleName(String roleName) { this.name = roleName; }

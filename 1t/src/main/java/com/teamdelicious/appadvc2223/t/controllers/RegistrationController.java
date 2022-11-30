@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @RequestMapping("register")
 public class RegistrationController {
 
-    private static final String ROLE_CUSTOMER = "CUSTOMER";
+    private static final String CUSTOMER_ROLE = "ROLE_CUSTOMER";
 
     @Autowired
     private UserService userService;
@@ -30,7 +30,7 @@ public class RegistrationController {
 
     @PostMapping
     private String register(UserDTO userDTO, Model model) {
-        userDTO.setRole(ROLE_CUSTOMER);
+        userDTO.setRole(CUSTOMER_ROLE);
         userService.add(userDTO);
         return "redirect:/login";
     }

@@ -7,6 +7,7 @@ import com.teamdelicious.appadvc2223.t.repository.UserRepository;
 import com.teamdelicious.appadvc2223.t.security.CommonBeanConfiguration;
 import com.teamdelicious.appadvc2223.t.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +55,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(UserDTO updatedUser) {
-        userRepository.save(new User(updatedUser));
+        User user = new User(updatedUser);
+        userRepository.save(user);
     }
 
     @Override
@@ -63,7 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO validateUser(String emailAddress, String password) {
+    public UserDTO validateUser(String emailAddress, String password) throws UsernameNotFoundException {
         User user = userRepository.findByEmailAddress(emailAddress);
 
         if (passwordEncoder.matches(password, user.getPasswordHash()))
@@ -74,7 +76,6 @@ public class UserServiceImpl implements UserService {
         {
             return null;
         }
-
 
     }
 

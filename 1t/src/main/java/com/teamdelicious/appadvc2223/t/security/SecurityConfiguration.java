@@ -29,22 +29,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/login*","/register")
-                .anonymous()
+                .antMatchers("/","/login*","/register*")
+                    .anonymous()
+                .antMatchers("/user*").hasRole("ADMIN")
+                .antMatchers("/menu*").hasAnyRole("ADMIN", "EMPLOYEE")
                 .anyRequest()
-                .authenticated()
+                    .authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/home",true)
-                .usernameParameter("emailAddress")
+                    .formLogin()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/home",true)
+                    .usernameParameter("emailAddress")
                 .and()
-                .logout()
-                .permitAll();
+                    .logout()
+                    .permitAll();
     }
 
     //@Autowired
