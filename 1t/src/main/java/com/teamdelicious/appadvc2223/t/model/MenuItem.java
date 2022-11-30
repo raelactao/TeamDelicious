@@ -10,7 +10,6 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-@Table(name = "menuItem")
 public class MenuItem {
 
     @Id
@@ -25,11 +24,11 @@ public class MenuItem {
     //@Column(nullable = false)
     //private String category;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
     @NotNull(message = "Please enter a price.")
-    @Column
+    @Column(nullable = false)
     private double price;
 
 
