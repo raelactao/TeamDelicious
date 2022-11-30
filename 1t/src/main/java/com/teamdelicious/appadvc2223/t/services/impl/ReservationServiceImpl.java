@@ -30,7 +30,22 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void add(ReservationDTO reservationDTO) {
 
+        Reservation reservation = new Reservation(reservationDTO);
+
+        /*
+        if (!violations.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (ConstraintViolation<Reservation> constraintViolation : violations) {
+                sb.append(constraintViolation.getMessage());
+            }
+            throw new ConstraintViolationException("Error occurred: " + sb.toString(), violations);
+        }
+
+         */
+
         reservationRepository.save(new Reservation(reservationDTO));
+
+
     }
 
     @Override
