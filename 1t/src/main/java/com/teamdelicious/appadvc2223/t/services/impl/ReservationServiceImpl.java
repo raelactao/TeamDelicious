@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.xml.validation.Validator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,6 +33,8 @@ public class ReservationServiceImpl implements ReservationService {
     public void add(ReservationDTO reservationDTO) {
 
         Reservation reservation = new Reservation(reservationDTO);
+
+
 
         /*
         Set<ConstraintViolation<Reservation>> violations = validateReservedDateTime(reservation);

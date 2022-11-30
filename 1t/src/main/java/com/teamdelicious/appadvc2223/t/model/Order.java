@@ -28,11 +28,11 @@ public class Order {
     private String address;
 
 
-
+    /*
     @OneToMany
     @JoinColumn(name = "cartDetails_id", nullable = false)
     private Set<CartDetails> cartDetails;
-
+     */
 
     @Column
     private double amountPayable;

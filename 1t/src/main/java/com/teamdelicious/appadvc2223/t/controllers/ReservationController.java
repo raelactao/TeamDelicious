@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import javax.validation.Valid;
+
+@RestController
 @RequestMapping("/reservations")
 public class ReservationController {
     @Autowired
@@ -28,7 +30,7 @@ public class ReservationController {
     }
 
     @PostMapping
-    private String addReservation(ReservationDTO reservationDTO, Model model) {
+    private String addReservation(@Valid ReservationDTO reservationDTO, Model model) {
         reservationService.add(reservationDTO);
         return list(model);
     }
@@ -40,7 +42,7 @@ public class ReservationController {
     }
 
     @PutMapping
-    private String updateReservation(ReservationDTO menuItemDTO, Model model) {
+    private String updateReservation(@Valid ReservationDTO menuItemDTO, Model model) {
         reservationService.update(menuItemDTO);
         return list(model);
     }

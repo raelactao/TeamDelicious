@@ -20,7 +20,7 @@ public class Reservation {
     private Long id;
 
 
-    //@ReservationDateTimeConstraint
+    @ReservationDateTimeConstraint()
     @NotNull(message = "Please input a date and time.")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(nullable = false)

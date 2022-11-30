@@ -19,14 +19,13 @@ public class ReservationValidation implements ConstraintValidator<ReservationDat
     @Autowired
     ReservationService reservationService;
 
-    @Override
     public void initialize(ReservationDateTimeConstraint contactNumber) {
     }
 
-    @Override
     public boolean isValid(String reservationField,
                            ConstraintValidatorContext cxt) {
-        boolean reservationTaken = false;
+
+        boolean reservationAvailable = true;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         LocalDateTime reservedDate = LocalDateTime.parse(reservationField, formatter);
@@ -36,11 +35,11 @@ public class ReservationValidation implements ConstraintValidator<ReservationDat
             if (reservationDTO1.getReservedDateTime().equals(reservedDate))
             {
                 //message = reservation.getReservedDateTime() + "has already been reserved. Please select another time.";
-                reservationTaken = true;
+                reservationAvailable = false;
             }
         }
 
-        return reservationField != null && !reservationTaken;
+        return reservationField != null && reservationAvailable;
     }
 
 }
