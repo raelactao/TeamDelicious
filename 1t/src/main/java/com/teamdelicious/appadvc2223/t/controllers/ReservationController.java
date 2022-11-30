@@ -6,15 +6,31 @@ import com.teamdelicious.appadvc2223.t.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+//@RestController
+@Controller
 @RequestMapping("/reservations")
 public class ReservationController {
+
     @Autowired
     private ReservationService reservationService;
+
+    /*
+    @Autowired
+    private ReservationValidator reservationValidator;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(reservationValidator);
+    }
+
+
+     */
 
     @GetMapping()
     private String list(Model model) {
@@ -30,7 +46,15 @@ public class ReservationController {
     }
 
     @PostMapping
-    private String addReservation(@Valid ReservationDTO reservationDTO, Model model) {
+    private String addReservation(@Valid @ModelAttribute("reservation") ReservationDTO reservationDTO, BindingResult result, Model model) {
+        String err = reservationService.validateReservedDateTime(reservationDTO);
+        if (!err.isEmpty()) {
+            ObjectError error = new ObjectError("globalError", err);
+            result.addError(error);
+        }
+        if (result.hasErrors()) {
+            return "reservation/create";
+        }
         reservationService.add(reservationDTO);
         return list(model);
     }
@@ -51,15 +75,6 @@ public class ReservationController {
     @GetMapping("/delete/{id}")
     private String deleteReservation(@PathVariable Long id, Model model) {
 
-        /*
-        try {
-            menuItemService.delete(id);
-            ra.addFlashAttribute("message", "The menu item ID: " + id + " has been deleted.");
-        } catch (MenuItemNotFoundException e) {
-            ra.addFlashAttribute("message", e.getMessage());
-        }
-        return "redirect:/users";
-         */
         reservationService.delete(id);
         return list(model);
 

@@ -18,5 +18,5 @@ public interface ReservationService {
 
     void delete(Long id);
 
-    //String validateReservedDateTime(Reservation reservation);
+    String validateReservedDateTime(ReservationDTO reservationDTO);
 }
