@@ -24,6 +24,8 @@ public class ReservationController {
         return "reservation/index";
     }
 
+    /*
+    */
 
     @GetMapping("/create")
     private String getReservationAddForm(Model model) {
