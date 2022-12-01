@@ -30,8 +30,8 @@
       <td th:text="${cartDetail.getQuantity()}"></td>
       <td th:text="${cartDetail.getTotal()}"></td>
       <td>
-        <a href class="btn btn-outline-primary" th:href="@{~/order/{id}(id=${cartDetail.id})}">View</a>
-        <a href class="btn btn-outline-primary" th:href="@{~/order/delete/{id}(id=${cartDetail.id})}">Delete</a>
+        <a href class="btn btn-outline-primary" th:href="@{~/order/customer/{id}(id=${cartDetail.id})}">View</a>
+        <a href class="btn btn-outline-primary" th:href="@{~/order/customer/delete/{id}(id=${cartDetail.id})}">Delete</a>
       </td>
     </tr>
     <tr>
