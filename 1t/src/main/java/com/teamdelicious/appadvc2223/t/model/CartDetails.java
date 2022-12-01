@@ -29,8 +29,13 @@ public class CartDetails {
         return id;
     }
 
-    //@OneToOne(mappedBy = "cartDetails", cascade = CascadeType.REMOVE)
-    //private Order order;
+    /*
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
+
+
+     */
 
     public CartDetails() {}
 

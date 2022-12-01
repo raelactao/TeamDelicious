@@ -10,6 +10,7 @@ import com.teamdelicious.appadvc2223.t.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -73,14 +74,16 @@ public class ReservationServiceImpl implements ReservationService {
 
     //enter unique reservation logic so it does not add if date/time has already been added
     @Override
-    public String validateReservedDateTime(Reservation reservation) {
+    public String validateReservedDateTime(ReservationDTO reservationDTO) {
         String message = "";
 
         for (ReservationDTO reservationDTO1 : list())
         {
-            if (reservationDTO1.getReservedDateTime().equals(reservation.getReservedDateTime()))
+            if (reservationDTO1.getReservedDateTime().equals(reservationDTO.getReservedDateTime()))
             {
-                message = reservation.getReservedDateTime() + "has already been reserved. Please select another time.";
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, MMM dd yyyy 'at' H:mm a");
+                message = reservationDTO.getReservedDateTime().format(formatter) +
+                        " has already been reserved. Please select another time.";
 
             }
         }

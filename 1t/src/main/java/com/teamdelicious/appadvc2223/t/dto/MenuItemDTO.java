@@ -15,7 +15,7 @@ public class MenuItemDTO {
     @NotBlank(message = "Description is required")
     private String description;
 
-    @PositiveOrZero(message = "Price must not be a negative number")
+    @PositiveOrZero(message = "Price must not be a negative number.")
     private double price;
 
     public MenuItemDTO() {} ;
@@ -57,7 +57,7 @@ public class MenuItemDTO {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

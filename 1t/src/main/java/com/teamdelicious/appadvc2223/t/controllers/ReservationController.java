@@ -6,6 +6,8 @@ import com.teamdelicious.appadvc2223.t.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,7 +32,16 @@ public class ReservationController {
     }
 
     @PostMapping
-    private String addReservation(ReservationDTO reservationDTO, Model model) {
+    private String addReservation(@Valid @ModelAttribute("reservation") ReservationDTO reservationDTO,
+                                  BindingResult result, Model model) {
+        String err = reservationService.validateReservedDateTime(reservationDTO);
+        if (!err.isEmpty()) {
+            ObjectError error = new ObjectError("globalError", err);
+            result.addError(error);
+        }
+        if (result.hasErrors()) {
+            return "reservation/create";
+        }
         reservationService.add(reservationDTO);
         return list(model);
     }

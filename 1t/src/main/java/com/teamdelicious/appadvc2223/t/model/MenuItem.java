@@ -27,8 +27,8 @@ public class MenuItem {
     @Column(nullable = false)
     private String description;
 
-    @NotNull(message = "Please enter a price.")
-    @Column(nullable = false)
+
+    @Column
     private double price;
 
 

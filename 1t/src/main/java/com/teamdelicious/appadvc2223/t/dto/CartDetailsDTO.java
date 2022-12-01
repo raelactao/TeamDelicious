@@ -14,6 +14,7 @@ public class CartDetailsDTO {
 
     private double total;
 
+    //private Long orderId;
 
     public CartDetailsDTO() {}
 

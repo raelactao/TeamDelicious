@@ -55,7 +55,7 @@ public class MenuController {
     }
 
 
-    @DeleteMapping
+    @GetMapping("delete/{id}")
     private String deleteMenuItem(MenuItemDTO menuItemDTO, Model model) {
 
         /*

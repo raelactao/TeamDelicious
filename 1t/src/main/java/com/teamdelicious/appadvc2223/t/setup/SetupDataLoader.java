@@ -21,11 +21,16 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup)
+        {
             return;
+        }
+
 
         createRoleIfNotFound("ROLE_ADMIN");
         createRoleIfNotFound("ROLE_EMPLOYEE");
         createRoleIfNotFound("ROLE_CUSTOMER");
+
+        alreadySetup = true;
     }
 
     @Transactional
@@ -34,6 +39,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         Role role = roleRepository.findByName(name);
         if (role == null) {
             role = new Role(name);
+            roleRepository.save(role);
         }
         return role;
     }

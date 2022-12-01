@@ -46,6 +46,13 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<Address> addressList;
 
+    /*
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE )
+    private Set<Order> orderList;
+
+
+     */
+
     public User() {}
 
     public User(Long id) {
