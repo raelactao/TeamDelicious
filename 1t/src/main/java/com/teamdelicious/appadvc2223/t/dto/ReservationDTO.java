@@ -11,24 +11,25 @@ import java.time.LocalDateTime;
 public class ReservationDTO {
     private Long id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    public LocalDateTime getReservedDateTime() {
-        return reservedDateTime;
-    }
 
-    public void setReservedDateTime(LocalDateTime reservedDateTime) {
-        this.reservedDateTime = reservedDateTime;
-    }
 
+
+    @NotNull(message = "Please input a date and time.")
     private LocalDateTime reservedDateTime;
 
+    @NotEmpty(message = "Please enter a first name.")
     private String firstName;
 
+    @NotEmpty(message = "Please enter a last name.")
     private String lastName;
 
+    @NotEmpty(message = "Please enter a contact number.")
     private String contactNumber;
 
+    @NotEmpty(message = "Please enter an email address.")
+    @Email
     private String emailAddress;
+
 
     private String paxNumber;
 
@@ -62,6 +63,15 @@ public class ReservationDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    public LocalDateTime getReservedDateTime() {
+        return reservedDateTime;
+    }
+
+    public void setReservedDateTime(LocalDateTime reservedDateTime) {
+        this.reservedDateTime = reservedDateTime;
     }
 
     public String getFirstName() {

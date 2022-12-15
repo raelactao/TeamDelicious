@@ -10,10 +10,12 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@Controller("reserve/customer")
+@Controller
+@RequestMapping("reserve/customer")
 public class CustomerReserveController {
 
 
@@ -38,6 +40,9 @@ public class CustomerReserveController {
         }
         if (result.hasErrors()) {
             return "reserve/customer/create";
+        }
+        else {
+            model.addAttribute("success", "Reservation added successfully.");
         }
         reservationService.add(reservationDTO);
         return "reserve/customer/create";

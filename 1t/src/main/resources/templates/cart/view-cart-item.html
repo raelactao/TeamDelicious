@@ -14,7 +14,7 @@
 
 <div class="container">
     <h1 class="mt-5">Menu Item Information</h1>
-    <form th:method="PUT" th:action="@{~/order}" th:object="${cartDetail}">
+    <form th:method="PUT" th:action="@{~/order/customer}" th:object="${cartDetail}">
         <input type="hidden" name="id" th:field="*{id}">
         <div class="mb-3">
             <label for="menuItem" class="form-label">Item</label>
