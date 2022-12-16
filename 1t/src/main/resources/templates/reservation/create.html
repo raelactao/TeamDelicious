@@ -19,7 +19,7 @@
       <input type="hidden" th:field="*{id}">
       <div class="mb-3">
         <span th:if="${#fields.hasErrors('global')}">
-          <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+          <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="alert alert-danger" />
         </span>
         <span class="alert alert-warning" th:if="${#fields.hasErrors('reservedDateTime')}" th:errors="*{reservedDateTime}"></span>
         <label for="reservedDateTime" class="form-label">Reserved Date & Time</label>
